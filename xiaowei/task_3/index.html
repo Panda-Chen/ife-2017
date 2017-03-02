@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ife Task_1_3_1 练习</title>
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+    
+    .container {
+        background-color: #eee;
+        border: 1px solid #999;
+        padding: 20px;
+        position: relative;
+    }
+    
+    .content-left {
+        border: 1px solid #999;
+        background-color: #fff;
+        width: 200px;
+        float: left;
+    }
+    
+    .content-right {
+        border: 1px solid #999;
+        background-color: #fff;
+        width: 120px;
+        float: right;
+        top: 0;
+        right: 0;
+    }
+    
+    .content {
+        border: 1px solid #999;
+        padding: 20px;
+        background-color: #fff;
+        position: relative;
+        margin-left: 220px;
+        margin-right: 140px;
+    }
+    
+    .clearfix {
+        clear: both;
+    }
+    
+    .team-name {
+        font-size: 12px;
+        font-weight: bold;
+        text-align: center;
+        margin:20px;
+    }
+    
+    .team-logo {
+        float: left;
+        margin:20px;
+        background: #dfdfdf none repeat 0 0;
+        border: 1px solid #979797;
+    }
+    
+    .item-img {
+        margin: 20px;
+        display: block;
+        background: #dfdfdf none repeat 0 0;
+        border: 1px solid #979797;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content-left">
+            <img src="" alt="" width="80" height="80" class="team-logo">
+            <div class="team-name">团队名称</div>
+        </div>
+        <div class="content-right">
+            <img src="" alt="" height="80" width="80" class="item-img">
+            <img src="" alt="" height="80" width="80" class="item-img">
+            <img src="" alt="" height="80" width="80" class="item-img">
+            <img src="" alt="" height="80" width="80" class="item-img">
+        </div>
+        <div class="content">
+            <h1>学习总结</h1>
+            <p>1、这个例子让我学习到如何利用float：left和float：right来进行三栏式布局，还有就是合理利用clear来清楚浮动。</p>
+            <p>2、显示团队logo的地方也值得注意，要是logo和字显示顶端对齐，需要将图片设置float：left，然后再放一个div，里面的子就会和图片顶端对齐了</p>
+            <p>3、右侧图片和图片之间的margin是会互相抵消的</p>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</body>
+
+</html>
