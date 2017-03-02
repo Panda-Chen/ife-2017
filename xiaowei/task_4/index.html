@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>任务四 定位和居中问题</title>
+    <style>
+    body {
+        background-color: #fff;
+    }
+    
+    .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 200px;
+        width: 400px;
+        background-color: #ccc;
+        margin-left: -200px;
+        margin-top: -100px;
+    }
+    
+    .left-sector {
+        border: 1px solid #fc0;
+        border-radius: 50px;
+        width: 100px;
+        height: 100px;
+        background-color: #fc0;
+        position: absolute;
+        top: -50px;
+        left: -50px;
+    }
+    
+    .top {
+        width: 101px;
+        height: 50px;
+        background-color: #fff;
+        position: relative;
+        top: -1px;
+        left: 0;
+    }
+    
+    .left {
+        width: 50px;
+        height: 102px;
+        background-color: #fff;
+        position: relative;
+        top: -1px;
+        left: -1px;
+    }
+    
+    .bottom-sector {
+        border: 1px solid #fc0;
+        border-radius: 50px;
+        width: 100px;
+        height: 100px;
+        background-color: #fc0;
+        position: absolute;
+        right: -50px;
+        bottom: -50px;
+    }
+    
+    .right {
+        width: 50px;
+        height: 102px;
+        background-color: #fff;
+        position: absolute;
+        top: -1px;
+        right: -1px;
+    }
+    
+    .bottom {
+        height: 50px;
+        width: 52px;
+        background-color: #fff;
+        position: absolute;
+        left: -1px;
+        bottom: -1px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="left-sector">
+            <div class="top"></div>
+            <div class="left"></div>
+        </div>
+        <div class="bottom-sector">
+            <div class="right"></div>
+            <div class="bottom"></div>
+        </div>
+    </div>
+</body>
+
+</html>
