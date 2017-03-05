@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>任务九：使用HTML/CSS实现一个复杂页面</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <header>
+        <span class="logo"></span>
+        <div class="header-r">
+            <div class="search-w">
+                <form action="" method="post">
+                    <input type="text" name="keyword" id="keyword">
+                    <span class="search-i"></span>
+                </form>
+            </div>
+            <div class="login-w">
+                <a href="javascript:void(0);" class="login"><span class="login-i"></span>登录</a>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <aside class="content-l">
+            <div class="u-center">
+                <div class="u-info">
+                    <span class="u-i"><span></span></span>
+                    <span class="u-name">ABC123</span>
+                </div>
+                <div class="u-info">
+                    <ul class="u-more">
+                        <li>
+                            <p>110</p>
+                            <p>收藏</p>
+                        </li>
+                        <li>
+                            <p>313</p>
+                            <p>粉丝</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="u-menu">
+                <ul>
+                    <li class="cur u-table"><span><b></b>个人报表</span>
+                        <ul>
+                            <li><b class="status"></b> <span><b></b>文件一</span></li>
+                            <li class="cur"><b class="status"></b> <span><b></b>文件二</span>
+                                <ul>
+                                    <li class="cur"><span><b></b>文档1</span></li>
+                                    <li><span><b></b>文档1</span></li>
+                                </ul>
+                            </li>
+                            <li><b class="status"></b> <span><b></b>文件三</span></li>
+                        </ul>
+                    </li>
+                    <li class="u-favor"><span><b></b>个人收藏</span></li>
+                    <li class="u-share"><span><b></b>我的分享</span></li>
+                    <li class="u-gallery"><span><b></b>图库</span></li>
+                    <li class="u-record"><span><b></b>成长记录</span></li>
+                    <li class="u-account"><span><b></b>账户信息</span></li>
+                </ul>
+            </div>
+        </aside>
+        <div class="content-r">
+            <div class="nav">
+                <p>C站&emsp;<span>/&ensp;个人报表&ensp;/&ensp;文件一&ensp;/&ensp;文档一</span></p>
+            </div>
+            <div class="c">
+                <div class="query-criteria">
+                    <form>
+                        <div class="col">
+                            <label for="queryitem">查询项</label>
+                            <select name="queryitem" id="queryitem">
+                                <option>第一项</option>
+                                <option>第二项</option>
+                                <option>第三项</option>
+                                <option>第四项</option>
+                                <option>第五项</option>
+                            </select>
+                        </div>
+                        <div class="col exchange-c">
+                            <div class="row">
+                                <label for="buyer">买方</label>
+                                <select name="buyer" id="buyer" class="select-lg">
+                                    <option>小A</option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <label for="seller">卖方</label>
+                                <select name="seller" id="seller" class="select-lg">
+                                    <option>小C</option>
+                                </select>
+                            </div>
+                            <span class="exchange-i"></span>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <label for="date">日期</label>
+                                <input type="text" name="date" class="select-lg" value="2017-03-05">
+                                <label for="spendtime">总耗时</label>
+                                <select name="spendtime" id="spendtime">
+                                    <option>8 天</option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <label for="num">人数</label>
+                                <select name="num" id="num">
+                                    <option>10人</option>
+                                </select>
+                                <label for="spendtime">成交项</label>
+                                <select name="spendtime" id="spendtime" class="select-lg">
+                                    <option>10 项</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col col-btn">
+                            <button class="btn-search">搜索</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="time-line">
+                    <div class="list-w">
+                        <div class="pre"><span></span></div>
+                        <ul class="list-c">
+                            <li class="cur">
+                                <p class="item-time">10:00 am</p>
+                                <p class="item-price">￥<span>1200</span></p>
+                            </li>
+                            <li>
+                                <p class="item-time">11:00 am</p>
+                                <p class="item-price">￥<span>1300</span></p>
+                            </li>
+                            <li>
+                                <p class="item-time">12:00 am</p>
+                                <p class="item-price">￥<span>1200</span></p>
+                            </li>
+                            <li>
+                                <p class="item-time">01:00 pm</p>
+                                <p class="item-price">￥<span>1400</span></p>
+                            </li>
+                            <li>
+                                <p class="item-time">02:00 pm</p>
+                                <p class="item-price">￥<span>1500</span></p>
+                            </li>
+                            <li>
+                                <p class="item-time">03:00 pm</p>
+                                <p class="item-price">￥<span>1800</span></p>
+                            </li>
+                        </ul>
+                        <div class="next"><span></span></div>
+                    </div>
+                    <div class="history-query"><span></span>
+                        <p>查询历史</p>
+                    </div>
+                </div>
+                <div class="statistics">
+                    <p class="title">2016年4月份统计</p>
+                    <ul>
+                        <li>
+                            <div class="w item-1">
+                                <p class="item-num">133311</p>
+                                <p  class="item-name">成交量</p>
+                                <span></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="w item-2">
+                                <p class="item-num">133311</p>
+                                <p  class="item-name">成交量</p>
+                                <span></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="w item-3">
+                                <p class="item-num">133311</p>
+                                <p   class="item-name">成交量</p>
+                                <span></span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="w item-4">
+                                <p class="item-num">133311</p>
+                                <p  class="item-name">成交量</p>
+                                <span></span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="groups">
+                	<div class="group group-lg">
+                		<p class="group-name">第一组项目</p>
+                		<div class="group-c">
+                			
+                		</div>
+                	</div>
+                	<div class="group group-row-last">
+                		<p class="group-name">第一组项目</p>
+                		<div class="group-c">
+                			
+                		</div>
+                	</div>
+                	<div class="group">
+                		<p class="group-name">日历</p>
+                		<div class="group-c">
+                			
+                		</div>
+                	</div>
+                	<div class="group group-lg group-row-last">
+                		<p class="group-name">汽车行业品牌榜</p>
+                		<div class="group-c">
+                			
+                		</div>
+                	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
