@@ -1,7 +1,7 @@
 *{margin: 0;padding: 0;box-sizing: border-box;}
 body{font-size: 12px;font-family: "SimHei","黑体";}
 ul,li{list-style: none;}
-input,select,textarea,button{font-family: "黑体";font-size: 12px;outline: none;}
+input,select,textarea,button{font-family: "黑体";font-size: 12px;outline: none;background-color: #fff;}
 .icon{background: url(../img/icon.png) no-repeat;}
 /*header头部顶部*/
 header{height:56px;border-bottom: 1px solid #2189bf;background-color: #2189bf;padding:10px 50px; }
@@ -122,10 +122,11 @@ header{height:56px;border-bottom: 1px solid #2189bf;background-color: #2189bf;pa
 .search-form .col input,.search-form .col textarea{width: 100%}
 .search-form .col textarea{height: 109px;resize: none;}
 
-.search-form .row{overflow: hidden;}
-.search-form .col{float: left;border-bottom: 1px solid #E7E7E7;margin-left: 0;width: 100%;}
-.search-form .col-price{border-right:1px;width: 95px;}
+.search-form .row{overflow: hidden;margin-bottom: 0;}
+.search-form .col{float: left;border-bottom: 1px solid #E7E7E7;margin-left: 0;width: 100%;padding-top: 5px;}
+.search-form .col-price{border-right:1px solid #e7e7e7;width: 95px;}
 .search-form .col-manager{width:185px;}
+.search-form .row-submit{margin-top: 5px;}
 .search-form .row-submit .lbl{display: inline;padding-left: 0;}
 .search-form .btn-search{float: right;}
 /*日历*/
