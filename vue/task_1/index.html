@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>背景图片模糊处理</title>
+    <style>
+    body {
+        background-color: #222;
+        color: #222;
+        font-size: 1.8rem
+    }
+    
+    .main {
+        width: 800px;
+        height: 533px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    
+    .bg-img {
+        width: 800px;
+        height: 533px;
+        background: url(./img/t.jpg) no-repeat;
+        transition: .8 all;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+    .main:hover .bg-img {
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+    }
+    
+    .content {
+        width: 600px;
+        height: 400px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+    
+    button {
+        background-color: transparent;
+        width: 100%;
+        height: 100%;
+        border: none;
+        font-size: 2.8rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    
+    .content:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 0;
+        border: 3px solid ghostwhite;
+        border-width: 0 3px;
+        overflow: hidden;
+        visibility: hidden;
+        transition: all .8s;
+        box-sizing: border-box;
+    }
+    
+    .main:hover .content:before {
+        height: 100%;
+        visibility: visible;
+        top: 0;
+    }
+    
+    .content:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 0;
+        height: 100%;
+        border: 3px solid ghostwhite;
+        border-width: 3px 0;
+        overflow: hidden;
+        visibility: hidden;
+        transition: all .8s;
+        box-sizing: border-box;
+    }
+    
+    .main:hover .content:after {
+        width: 100%;
+        visibility: visible;
+        left: 0;
+    }
+    
+    .main:hover button {
+        border-color: #fff;
+    }
+    
+    button em {
+        font-size: 3rem;
+        font-style: normal;
+    }
+    
+    .masked-linear {
+        background-image: -webkit-linear-gradient(left, #147B96, #E6D205 25%, #147B96 50%, #E6D205 75%, #147B96);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        -webkit-background-size: 200% 100%;
+    }
+    
+    .main:hover .masked-linear {
+        -webkit-animation: masked-linear-animation 4s infinite linear;
+    }
+    
+    @-webkit-keyframes masked-linear-animation {
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: -100% 0;
+        }
+    }
+    
+    .masked {
+        background-image: -webkit-linear-gradient(left, #76BC90, #76BC90);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+    }
+    
+    .main:hover .masked {
+        -webkit-animation: masked-animation 4s infinite linear;
+    }
+    
+    @-webkit-keyframes masked-animation {
+        0% {
+            background-image: -webkit-linear-gradient(left, #76BC90, #76BC90);
+        }
+        33.3% {
+            background-image: -webkit-linear-gradient(left, #84AA49, #84AA49);
+        }
+        66.6% {
+            background-image: -webkit-linear-gradient(left, #619B62, #619B62);
+        }
+        100% {
+            background-image: -webkit-linear-gradient(left, #147B96, #147B96);
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="bg-img "></div>
+        <div class="content">
+            <button>
+                <em class="masked-linear">欢迎参加百度前端技术学校</em>
+                <br> <span class="masked">点击报名</span>
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>
