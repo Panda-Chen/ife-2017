@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>任务五：基础JavaScript练习(二)</title>
+    <style>
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+    }
+    
+    ul {
+        position: relative;
+        width: 1200px;
+        border: 1px solid #000;
+        height: 300px;
+        margin-top: 10px;
+    }
+    
+    ul li {
+        background-color: red;
+        color: #fff;
+        width: 10px;
+        list-style: none;
+        text-align: center;
+        font-weight: bold;
+        vertical-align: bottom;
+        position: absolute;
+        bottom: 0;
+        transition: height 100ms;
+    }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="input">
+    <button class="left-add" id="leftin">左侧入</button>
+    <button class="right-add" id="rightin">右侧入</button>
+    <button class="left-out" id="leftout">左侧出</button>
+    <button class="right-out" id="rightout">右侧出</button>
+    <button id="random">随机生成50组</button>
+    <button id="sort">排序</button>
+    <button id="unsort">打乱</button>
+    <ul id="result">
+    </ul>
+</body>
+
+</html>
+<script>
+function addEvent(elm, type, handler) {
+    if (!elm) return false;
+    if (elm.addEventListener) {
+        elm.addEventListener(type, handler, false);
+        return true;
+    } else if (elm.attachEvent) {
+        elm.attachEvent('on' + type, function() {
+            handler.apply(elm);
+        });
+        return true;
+    }
+    return false;
+}
+
+function isNumber(value) {
+    var re = /^[0-9]+.?[0-9]*$/;
+    if (!re.test(value)) {
+        return false;
+    }
+    return true;
+}
+
+function checkBoundary(value, minValue, maxValue) {
+    return value >= minValue && value <= maxValue;
+}
+
+function checkInput(value) {
+    if (isNumber(value)) {
+        if (checkBoundary(value, 10, 100)) {
+            return true;
+        } else {
+            alert('请输入10-100内的数字');
+            return false;
+        }
+    } else {
+        alert('请输入正确的数字');
+        return false;
+    }
+}
+//洗牌，乱序
+function shuffle(numPool) {
+    for (var j, x, i = numPool.length; i; j = parseInt(Math.random() * i), x = numPool[--i], numPool[i] = numPool[j], numPool[j] = x);
+    return numPool;
+}
+
+function sort(str, len) {
+    var temp = 0;
+    for (var i = 0; i < len; i++) {
+        for (var j = 0; j < len - i && j + 1 < len; j++) {
+            //此处一定要转换成float，不然比较会有问题
+            if (parseFloat(str[j]) > parseFloat(str[j + 1])) {
+                temp = str[j + 1];
+                str[j + 1] = str[j];
+                str[j] = temp;
+            }
+        }
+    }
+    return str;
+}
+var queue = {
+    str: [],
+    len: function() {
+        return this.str.length;
+    },
+    leftin: function() {
+        var value = document.getElementById('input').value;
+        if (checkInput(value)) {
+            if (this.isInBoundary()) {
+                this.str.unshift(value);
+                this.render();
+            } else {
+                alert('数组已达到最大边界值，不能再添加');
+            }
+        }
+    },
+    leftout: function() {
+        if (this.isEmpty()) {
+            alert('没有可以移除的项');
+        } else {
+            alert(this.str.shift());
+            this.render();
+        }
+
+    },
+    rightin: function() {
+        var value = document.getElementById('input').value;
+        if (checkInput(value)) {
+            if (this.isInBoundary()) {
+                this.str.push(value);
+                this.render();
+            } else {
+                alert('数组已达到最大边界值，不能再添加');
+            }
+        }
+    },
+    rightout: function() {
+        if (this.isEmpty()) {
+            alert('没有可以移除的项');
+        } else {
+            alert(this.str.pop());
+            this.render();
+        }
+    },
+    render: function() {
+        var len = this.len();
+        var html = '';
+        for (var i = 0; i < len; i++) {
+            html += '<li style="height:' + this.str[i] * 2 + 'px;left:' + ((i + 1) * 5 + i * 10) + 'px;"></li>';
+        }
+        document.getElementById('result').innerHTML = html;
+    },
+    isEmpty: function() {
+        return this.len() === 0;
+    },
+    isInBoundary: function() {
+        return this.len() < 60;
+    },
+    swap: function(ele1, ele2) {
+        var temp = ele1.offsetHeight;
+        ele1.offsetHeight = ele2.offsetHeight;
+        ele1.style.height = ele2.offsetHeight + "px";
+        ele2.offsetHeight = temp;
+        ele2.style.height = temp + "px";
+    },
+    sort: function() {
+        var eles = document.querySelector("ul").querySelectorAll("li");
+        var len = this.len();
+        var temp = 0;
+        var i = 0,
+            j = 0;
+            var that = this;
+        var timer = setInterval(function() {
+            if (i >= len) {
+                clearInterval(timer);
+            }
+            if (j >= len - i-1) {
+                i++
+                j = 0;
+            }
+            if (eles[j].offsetHeight > eles[j + 1].offsetHeight) {
+                that.swap(eles[j], eles[j + 1]);
+            }
+            j++;
+        }, 50);
+
+    },
+    unsort: function() {
+        str = shuffle(this.str);
+        this.render();
+    },
+    random: function() {
+        this.str = [];
+        for (var i = 0; i < 50; i++) {
+            this.str[i] = Math.ceil(Math.random() * 100);
+        }
+        this.render();
+    }
+};
+window.onload = function() {
+    // addEvent(document.getElementById('leftin'), 'click', queue.leftin); 这种写法，会改变lefin方法中this的指代，变成click事件的函数参数
+    addEvent(document.getElementById('leftin'), 'click', function() {
+        queue.leftin();
+    });
+    addEvent(document.getElementById('rightin'), 'click', function() {
+        queue.rightin();
+    });
+    addEvent(document.getElementById('leftout'), 'click', function() {
+        queue.leftout();
+    });
+    addEvent(document.getElementById('rightout'), 'click', function() {
+        queue.rightout();
+    });
+    addEvent(document.getElementById('sort'), 'click', function() {
+        queue.sort();
+    });
+    addEvent(document.getElementById('unsort'), 'click', function() {
+        queue.unsort();
+    });
+    addEvent(document.getElementById('random'), 'click', function() {
+        queue.random();
+    });
+};
+</script>

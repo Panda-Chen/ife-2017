@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#container div{
+    display: flex;
+    flex-flow: row wrap;
+    border: 1px solid #000;
+    margin: 0 auto;
+    background-color: #fff;
+    color: #000;
+    text-align: left;
+}
+#container{
+    margin-top:40px;
+}
+
+div{
+    padding: 10px;
+}
+
+.btn{
+	display:inline-block;
+	background:tomato;
+	color:#fff;
+	width:100px;
+	height:40px;
+	text-decoration:none;
+	text-align:center;
+	font-size:16px;
+	font-weight:bold;
+	line-height:40px;
+}
+
+.operation{
+    text-align:center;
+    margin-top: 40px;
+}
+
+input{
+    width:300px;
+    height:40px;
+    border:1px solid #000;
+    padding:10px;
+    font-size:14px;
+}
+
+#container .selected{
+    background-color:red;
+}
+
+#container .current{
+    background-color:blue;
+}

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>任务四：基础JavaScript练习(一)</title>
+    <style>
+    ul li {
+        float: left;
+        background-color: red;
+        color: #fff;
+        min-width: 30px;
+        height: 30px;
+        list-style: none;
+        margin-left: 10px;
+        text-align: center;
+        line-height: 30px;
+        font-weight: bold;
+    }
+    </style>
+</head>
+
+<body>
+    <input type="text" id="input">
+    <button class="left-add" id="leftin">左侧入</button>
+    <button class="right-add" id="rightin">右侧入</button>
+    <button class="left-out" id="leftout">左侧出</button>
+    <button class="right-out" id="rightout">右侧出</button>
+    <ul id="result">
+    </ul>
+</body>
+
+</html>
+<script>
+function addEvent(elm, type, handler) {
+    if (!elm) return false;
+    if (elm.addEventListener) {
+        elm.addEventListener(type, handler, false);
+        return true;
+    } else if (elm.attachEvent) {
+        elm.attachEvent('on' + type, function() {
+            handler.apply(elm);
+        });
+        return true;
+    }
+    return false;
+}
+
+function isNumber(value) {
+    var re = /^[0-9]+.?[0-9]*$/;
+    if (!re.test(value)) {
+        return false;
+    }
+    return true;
+}
+var queue = {
+    str: [],
+    leftin: function() {
+        var value = document.getElementById('input').value;
+        if (isNumber(value)) {
+            this.str.unshift(value);
+            this.render();
+        } else {
+            alert('请输入正确的数字');
+            return null;
+        }
+    },
+    leftout: function() {
+        if (this.isEmpty()) {
+            alert('没有可以移除的项');
+
+        } else {
+            alert(this.str.shift());
+            this.render();
+        }
+
+    },
+    rightin: function() {
+        var value = document.getElementById('input').value;
+        if (isNumber(value)) {
+            this.str.push(value);
+            this.render();
+        } else {
+            alert('请输入正确的数字');
+            return null;
+        }
+    },
+    rightout: function() {
+        if (this.isEmpty()) {
+            alert('没有可以移除的项');
+        } else {
+            alert(this.str.pop());
+            this.render();
+        }
+    },
+    render: function() {
+        var len = this.str.length;
+        var html = '';
+        for (var i = 0; i < len; i++) {
+            html += '<li>' + this.str[i] + '</li>';
+        }
+        document.getElementById('result').innerHTML = html;
+    },
+    isEmpty: function() {
+        return this.str.length === 0;
+    }
+};
+window.onload = function() {
+    // addEvent(document.getElementById('leftin'), 'click', queue.leftin); 这种写法，会改变lefin方法中this的指代，变成click事件的函数参数
+    addEvent(document.getElementById('leftin'), 'click', function() {
+        queue.leftin();
+    });
+    addEvent(document.getElementById('rightin'), 'click', function() {
+        queue.rightin();
+    });
+    addEvent(document.getElementById('leftout'), 'click', function() {
+        queue.leftout();
+    });
+    addEvent(document.getElementById('rightout'), 'click', function() {
+        queue.rightout();
+    });
+};
+</script>

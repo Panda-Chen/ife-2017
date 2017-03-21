@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>任务六：基础JavaScript练习(三)</title>
+    <style>
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+    }
+    
+    ul {
+        margin-top: 10px;
+    }
+    
+    ul li {
+        float: left;
+        margin-left: 10px;
+        background-color: red;
+        color: #fff;
+        min-width: 30px;
+        list-style: none;
+        text-align: center;
+        font-weight: bold;
+    }
+    </style>
+</head>
+
+<body>
+    <textarea name="" id="input"></textarea>
+    <button id="add">插入</button>
+    <button id="search">查询</button>
+    <input type="text" id="searchtext">
+    <ul id="result">
+    </ul>
+</body>
+
+</html>
+<script>
+function addEvent(elm, type, handler) {
+    if (!elm) return false;
+    if (elm.addEventListener) {
+        elm.addEventListener(type, handler, false);
+        return true;
+    } else if (elm.attachEvent) {
+        elm.attachEvent('on' + type, function() {
+            handler.apply(elm);
+        });
+        return true;
+    }
+    return false;
+}
+
+function getInputValue() {
+    return document.getElementById('input').value;
+     // document.getElementById('input').value.split(/[^0-9a-zA-Z\u4e00-\u9fa5]+/).filter(function(d){return d != '';});//
+}
+/**
+ * 判断是否是空
+ */
+function isEmpty(value) {
+    if (value === null || value === "" || value === "undefined" || value === undefined || value === "null") {
+        return true;
+    } else {
+        value = value.replace(/\s/g, "");
+        if (value === "") {
+            return true;
+        }
+        return false;
+    }
+}
+var data = [];
+window.onload = function() {
+    addEvent(document.getElementById('add'), 'click', function() {
+        var value = getInputValue().trim().replace(/,/g, ',').replace(/，/g, ',').replace(/、/g, ',').replace(/ /g, ',').replace(/　/g, ',').replace(/\r?\n/g, ',');
+        data = value.split(',');
+        var html = '';
+        for (var i = 0; i < data.length; i++) {
+            html += '<li>' + data[i] + '</li>';
+        }
+        document.getElementById('result').innerHTML = html;
+    });
+    addEvent(document.getElementById('search'), 'click', function() {
+        if (data.length === 0) {
+            alert('当前数组为空');
+        } else {
+            var keyword = document.getElementById('searchtext').value;
+            if (isEmpty(keyword)) {
+                alert('请输入搜索关键字');
+            } else {
+                var html = '';
+                for (var i = 0; i < data.length; i++) {
+                    html += '<li>' + data[i].replace(new RegExp(keyword,'g'), '<span style="background-color:blue">'+keyword+'</span>') + '</li>';
+                }
+                document.getElementById('result').innerHTML = html;
+            }
+        }
+    });
+};
+</script>
