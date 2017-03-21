@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>自定义checkbox，radio样式</title>
+    <style>
+    .part-1 input[type="radio"] {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        border: 1px solid #D9D9D9;
+        width: 16px;
+        height: 16px;
+        outline: none;
+        position: relative;
+    }
+    
+    .part-1 input[type="radio"]:checked {
+        border-color: #D73D32;
+    }
+    
+    .part-1 input[type="radio"].r-circle {
+        border-radius: 50%;
+    }
+    
+    .part-1 input[type="radio"].r-rectangle {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .part-1 input[type="radio"].r-circle:checked::after {
+        border-radius: 50%;
+        width: 6px;
+        height: 6px;
+        background-color: #D73D32;
+        position: absolute;
+        content: '';
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -o-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+    
+    .part-1 input[type="radio"].r-rectangle:checked::before {
+        width: 2px;
+        height: 5px;
+        background-color: #D73D32;
+        line-height: 0;
+        font-size: 0;
+        position: absolute;
+        content: '';
+        bottom: -1px;
+        left: 1px;
+        -webkit-transform: rotate(-45deg) translateX(4px) translateY(-1px);
+        -moz-transform: rotate(-45deg) translateX(4px) translateY(-1px);
+        -ms-transform: rotate(-45deg) translateX(4px) translateY(-1px);
+        -o-transform: rotate(-45deg) translateX(4px) translateY(-1px);
+        transform: rotate(-45deg) translateX(4px) translateY(-1px);
+    }
+    
+    .part-1 input[type="radio"].r-rectangle:checked::after {
+        width: 8px;
+        height: 2px;
+        background-color: #D73D32;
+        position: absolute;
+        content: ' ';
+        bottom: 2px;
+        right: -1px;
+        -webkit-transform: rotate(-45deg) translateY(-3px) translateX(1px);
+        -moz-transform: rotate(-45deg) translateY(-3px) translateX(1px);
+        -ms-transform: rotate(-45deg) translateY(-3px) translateX(1px);
+        -o-transform: rotate(-45deg) translateY(-3px) translateX(1px);
+        transform: rotate(-45deg) translateY(-3px) translateX(1px);
+    }
+    
+    a {
+        display: inline-block;
+        width: 10px;
+        height: 5px;
+        background: red;
+        line-height: 0;
+        font-size: 0;
+        vertical-align: middle;
+        -webkit-transform: rotate(45deg);
+    }
+    
+    a:after {
+        content: '/';
+        display: block;
+        width: 20px;
+        height: 5px;
+        background: red;
+        -webkit-transform: rotate(-90deg) translateY(-50%) translateX(50%);
+    }
+    .part-2 input{
+    	display: none;
+    }
+    .part-2 label.circle{
+    	display: inline-block;
+    	border:1px solid #D9D9D9;
+    	width: 16px;height: 16px;
+    }
+    </style>
+</head>
+
+<body>
+    <a href=""></a>
+    <form class="part-1">
+    	 <p>
+        <input type="radio" name="rectangle" class="r-rectangle">
+        <input type="radio" name="rectangle" class="r-rectangle">奥数
+        <input type="radio" name="rectangle" checked class="r-rectangle">形体</p>
+    <p>
+        <input type="radio" name="circle" class="r-circle">书法
+        <input type="radio" name="circle" checked class="r-circle">美术
+    </p>
+    </form>
+   
+    <form class="part-2">
+    	<label class="circle" for="radio1"></label><input type="radio" name="p-r" id="radio1">radio1
+    </form>
+</body>
+
+</html>

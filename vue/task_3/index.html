@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>自定义网页右键菜单</title>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    
+    ul,
+    li {
+        list-style: none;
+    }
+    
+    .parent .parent-item {
+        background-color: #F5F5F5;
+        border: 1px solid #E3E3E3;
+        border-radius: 5px;
+        padding: 20px 15px;
+        margin: 20px;
+    }
+    
+    .menu {
+        position: absolute;
+        border: 1px solid #D0D0D0;
+        background-color: #fff;
+        padding: 10px 15px;
+        border-radius: 3px;
+        display: none;
+        max-width: 600px;
+    }
+    </style>
+</head>
+
+<body>
+    <ul class="parent" id="contentlist">
+        <li class="parent-item">事件阻止有三种方法：1、preventDefault 2、stopPropagation 3、stoplmmediatePropagation
+            <ul class="menu">
+                <li>preventDefault:阻止DOM元素的默认行为，例如表单<code>type="submit"</code>的button或input的提交表单行为</li>
+                <li>stopPropagation：阻止事件的传播（冒泡）</li>
+                <li>stoplmmediatePropagation:阻止其他事件处理函数执行，并也会阻止事件的传播</li>
+                <li><code>return false;</code>效果等价于preventDefault+stopPropagation</li>
+            </ul>
+        </li>
+        <li class="parent-item">事件监听方式：
+            <ul class="menu">
+                <li>HTML中：&lt;li oncontextmenu="openmenu"&gt;</li>
+                <li>JS中方法1：object.oncontextmenu=function(){openmenu}</li>
+                <li>JS中方法2：object.addEventListener("contextmenu",openmenu[,useCapture])，第三个参数标识是在时间捕获阶段触发还是在事件冒泡阶段触发，false标识冒泡阶段触发，true标识捕获阶段触发</li>
+            </ul>
+        </li>
+        <li class="parent-item">页面及元素的高度宽度，鼠标坐标
+            <ul class="menu">
+                <li>某个元素的高度：element.offsetHeight；某个元素的宽度：element.offsetWidth</li>
+                <li>窗体的高度：window.innerHeight；窗体的宽度:window.innerWidth</li>
+                <li>鼠标坐标：event.clientX；event.clientY</li>
+            </ul>
+        </li>
+        <li class="parent-item">right click to see the menu
+            <ul class="menu">
+                <li>Menu Item 1</li>
+                <li>Menu Item 2</li>
+                <li>Menu Item 3</li>
+            </ul>
+        </li>
+        <li class="parent-item">right click to see the menu
+            <ul class="menu">
+                <li>Menu Item 1</li>
+                <li>Menu Item 2</li>
+                <li>Menu Item 3</li>
+            </ul>
+        </li>
+        <li class="parent-item">right click to see the menu
+            <ul class="menu">
+                <li>Menu Item 1</li>
+                <li>Menu Item 2</li>
+                <li>Menu Item 3</li>
+            </ul>
+        </li>
+        <li class="parent-item">right click to see the menu
+            <ul class="menu">
+                <li>Menu Item 1</li>
+                <li>Menu Item 2</li>
+                <li>Menu Item 3</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+<script>
+document.getElementById("contentlist").addEventListener("contextmenu", openmenu, false);
+
+function openmenu(event) {
+    //重置所有menu的显示状态为隐藏
+    var visiableMenuList = document.querySelectorAll(".menu");
+    for (var i = 0; i < visiableMenuList.length; i++) {
+        visiableMenuList[i].style.display = 'none';
+    }
+
+    //判断点击的目标
+    var clickTarget = event.target;
+    if (clickTarget.tagName === 'LI' && clickTarget.className === 'parent-item') {
+        //判断目标项的菜单是否处于显示或隐藏状态，根据状态隐藏或显示菜单
+        var openmenu = clickTarget.children[0];
+        openmenu.style.display = "block";
+        var menuHeight = openmenu.offsetHeight;
+        var menuWidth = openmenu.offsetWidth;
+        var x = event.clientX;
+        var y = event.clientY;
+        var screenX = window.innerWidth;
+        var screenY = window.innerHeight;
+
+        //判断右侧空间是否足够，如果不是，那么调整菜单的位置展示在左侧
+        //判断下侧的空间是否足够，如果不是，那么展示在上侧
+        if (x + menuWidth > screenX) x = x - menuWidth;
+        if (y + menuHeight > screenY) y = y - menuHeight;
+        //如果左侧或者是上侧超出，那么设置为0；
+        if (x < 0) x = 0;
+        if (y < 0) y = 0;
+        openmenu.style.top = y + "px";
+        openmenu.style.left = x + "px";
+    }
+    event.preventDefault();
+    return false;
+}
+</script>
+
+</html>
