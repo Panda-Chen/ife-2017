@@ -1,84 +1,17 @@
-function node(data) {
-    this.data = data;
-    this.parent = null;
-    this.children = [];
+function $(idorclass) {
+    return document.querySelector(idorclass);
 }
 
-function tree(data) {
-    var node = new node(data);
-    this._root = node;
-}
-tree.prototype.traverseDF = function(callback) {
-    (function recurse(currentNode) {
-        //遍历节点的孩子
-        for (var i = 0, length = currentNode.children.length; i < length; i++) {
-            recurse(currentNode.children[i]);
-        }
-        //回调函数
-        callback(currentNode);
-    })(this._root);
-};
-tree.prototype.traverseBF = function(callback) {
-    var rootarr = [this._root];
-    currentTree = rootarr.shift();
-    while (currentTree) {
-        for (var i = 0, len = currentTree.children.length; i < len; i++) {
-            rootarr.push(currentTree.children[i]);
-        }
-        treeList.push(currentTree);
-        currentTree = rootarr.shift();
-    }
-};
-tree.prototype.contains = function(callback, traversal) {
-    traversal.call(this, callback);
-};
-tree.prototype.add = function(data, toData, traversal) {
-    var child = new Node(data),
-        parent = null,
-        callback = function(node) {
-            if (node.data === toData) {
-                parent = node;
-            }
-        };
-    this.contains(callback, traversal);
-    if (parent) {
-        parent.children.push(child);
-        child.parent = parent;
+function isEmpty(value) {
+    if (value === null || value === "" || value === "undefined" || value === undefined || value === "null") {
+        return true;
     } else {
-        throw new Error('节点插入失败');
-    }
-};
-tree.prototype.remove = function(data, fromData, traversal) {
-    var tree = this,
-        parent = null,
-        childToRemove = null,
-        index;
-    var callback = function(node) {
-        if (node.data === fromData) {
-            parent = node;
+        value = value.replace(/\s/g, "");
+        if (value === "") {
+            return true;
         }
-    };
-    this.contains(callback, traversal);
-    if (parent) {
-        index = findIndex(parent.children, data);
-        if (index === undefined) {
-            throw new Error('节点删除失败');
-        } else {
-            childToRemove = parent.children.splice(index, 1);
-        }
-    } else {
-        throw new Error('父节点不存在');
+        return false;
     }
-};
-
-function findIndex(arr, data) {
-    var index;
-    for (var i = 0; i < arr.length; i++) {
-        if (arr[i].data === data) {
-            index = i;
-        }
-    }
-    return index;
 }
 
 //下面是树的两种遍历算法
@@ -92,6 +25,7 @@ function treeBF(root) {
         for (var i = 0, len = currentTree.children.length; i < len; i++) {
             rootarr.push(currentTree.children[i]);
         }
+        clearStyle(currentTree);
         treeList.push(currentTree);
         currentTree = rootarr.shift();
     }
@@ -102,36 +36,75 @@ function treeDF(root) {
     for (var i = 0, len = root.children.length; i < len; i++) {
         treeDF(root.children[i]);
     }
+    clearStyle(root);
     treeList.push(root);
 }
-
-function render() {
+//为当前项目增加特殊的样式
+function render(searchData) {
     var len = treeList.length;
     var i = 0;
-    treeList[0].style.backgroundColor = "#0000FE";
+    setCurrentStyle(treeList[0], searchData);
+    if (searchData && treeList[i].dataset.value === searchData) {
+        return;
+    }
     var timer = setInterval(function() {
         i++;
         if (i < len) {
-            treeList[i - 1].style.backgroundColor = "#fff";
-            treeList[i].style.backgroundColor = "#0000FE";
+            treeList[i - 1].removeAttribute("style");
+            setCurrentStyle(treeList[i], searchData);
+            if (searchData && treeList[i].dataset.value === searchData) {
+                clearInterval(timer);
+            }
+
         } else {
             clearInterval(timer);
-            treeList[len - 1].style.backgroundColor = "#fff";
+            treeList[len - 1].removeAttribute("style");
         }
     }, 500);
 }
 
+function setCurrentStyle(node, searchData) {
+    if (searchData) {
+        node.style.backgroundColor = "red";
+    } else {
+        node.style.backgroundColor = "#0000FE";
+    }
+}
+//清楚当选项的样式
+function clearStyle(node){
+   node.removeAttribute("style");
+}
 window.onload = function() {
-    var root = document.querySelector("#root");
-    document.querySelector("#df").onclick = function() {
+    var root = $("#root");
+    $("#df").onclick = function() {
         treeList = [];
         treeDF(root);
         render();
     };
-    document.querySelector("#bf").onclick = function() {
+    $("#bf").onclick = function() {
         treeList = [];
         treeBF(root);
         render();
     };
+    $("#DF-search").onclick = function() {
+        var searchData = $('#input').value;
+        if (isEmpty(searchData)) {
+            alert('请输入需要查找的节点内容');
+        } else {
+            treeList = [];
+            treeDF(root);
+            render(searchData);
+        }
+    };
+    $("#BF-search").onclick = function() {
+        var searchData = $('#input').value;
+        if (isEmpty(searchData)) {
+            alert('请输入需要查找的节点内容');
+        } else {
+            treeList = [];
+            treeBF(root);
+            render(searchData);
+        }
+    }
 
 };

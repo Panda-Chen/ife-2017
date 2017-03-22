@@ -8,41 +8,42 @@
 </head>
 
 <body>
-    <div class="root" id="root">supper
-        <div class="fisrt-child">food
-            <div class="second-child">Apple
-                <div class="third-child">Pear</div>
-                <div class="third-child">Pig</div>
-                <div class="third-child">Cola</div>
-                <div class="third-child">Soccer</div>
-            </div>
-            <div class="second-child">Phone</div>
-            <div class="second-child">
-            	<div class="third-child">Book</div>
-            	<div class="third-child">School</div>
-            </div>
-        </div>
-        <div class="fisrt-child">Note 
-        <div class="second-child">Human
-        <div class="third-child">Code</div>
-        <div class="third-child">Operate</div>
-        <div class="third-child">Man</div>
-        	
-        </div>
-        <div class="second-child">
-        	Program
-        	<div class="third-child">Bement
-        	<div class="forth-child">Cart</div></div>
-        	<div class="third-child">Class</div>
-        </div>
-        </div>
-        <div class="fisrt-child">Flash</div>
-    </div>
-
-      <div>
+    <div class="btns">
         <a href="javascript:void(0);" class="btn" id="df">DF</a>
         <a href="javascript:void(0);" class="btn" id="bf">BF</a>
-      
+        <input type="text" class="keyword" placeholder="请输入需要查找的节点内容" id="input">
+        <a href="javascript:void(0);" class="btn" id="DF-search">DF-search</a>
+        <a href="javascript:void(0);" class="btn" id="BF-search">BF-search</a>
+    </div>
+    <div class="root" id="root" data-value="supper">supper
+        <div class="fisrt-child" data-value="food">food
+            <div class="second-child" data-value="Apple">Apple
+                <div class="third-child" data-value="Pear">Pear</div>
+                <div class="third-child" data-value="Pig">Pig</div>
+                <div class="third-child" data-value="Cola">Cola</div>
+                <div class="third-child" data-value="Soccer">Soccer</div>
+            </div>
+            <div class="second-child" data-value="Phone">Phone</div>
+            <div class="second-child" data-value="">
+                <div class="third-child" data-value="Book">Book</div>
+                <div class="third-child" data-value="School">School</div>
+            </div>
+        </div>
+        <div class="fisrt-child" data-value="Note">Note
+            <div class="second-child" data-value="Human">Human
+                <div class="third-child" data-value="Code">Code</div>
+                <div class="third-child" data-value="Operate">Operate</div>
+                <div class="third-child" data-value="Man">Man</div>
+            </div>
+            <div class="second-child" data-value="Program">
+                Program
+                <div class="third-child" data-value="Bement">Bement
+                    <div class="forth-child" data-value="Cart">Cart</div>
+                </div>
+                <div class="third-child" data-value="Class">Class</div>
+            </div>
+        </div>
+        <div class="fisrt-child" data-value="Flash">Flash</div>
     </div>
 </body>
 
