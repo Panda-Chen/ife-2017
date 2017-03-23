@@ -3,8 +3,21 @@
 <head>
 	<meta charset="UTF-8">
 	<title>动态数据绑定（一）</title>
+	<script src="./observer.js"></script>
 </head>
 <body>
 	
 </body>
+<script>
+	let data = {
+		user:{
+			name:'cp',
+			age:300
+		},
+		address:{
+			city:'chengdu'
+		}
+	}
+	let app = new Observer(data);
+</script>
 </html>

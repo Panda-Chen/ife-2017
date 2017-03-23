@@ -55,7 +55,6 @@ function render(searchData) {
             if (searchData && treeList[i].dataset.value === searchData) {
                 clearInterval(timer);
             }
-
         } else {
             clearInterval(timer);
             treeList[len - 1].removeAttribute("style");
